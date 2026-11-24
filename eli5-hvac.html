@@ -1,0 +1,200 @@
+<title>냉동기와 냉각탑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* layout: hero flow-diagram card, three concept cards, two country cards (stack on mobile) */
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --fg:#19262d; --muted:#5c6b73;
+  --border:#d7e0e4; --accent:#0f766e; --cold:#2563eb; --hot:#dc5a2c;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e161c; --surface:#17222a; --fg:#e7eef1; --muted:#90a3ab;
+    --border:#263339; --accent:#2dd4bf; --cold:#5b9dff; --hot:#ff8a5c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e161c; --surface:#17222a; --fg:#e7eef1; --muted:#90a3ab;
+  --border:#263339; --accent:#2dd4bf; --cold:#5b9dff; --hot:#ff8a5c;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:'Inter',system-ui,sans-serif;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+  padding-block:28px 60px;
+}
+.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:'Space Grotesk',system-ui,sans-serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:-0.01em}
+h2{font-size:1.05rem;color:var(--accent)}
+p{margin:0;color:var(--muted);line-height:1.55;max-width:60ch}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px}
+.header{display:flex;flex-direction:column;gap:6px}
+
+/* flow diagram */
+.flow{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px 2px 4px;min-width:0}
+.node{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;width:118px;text-align:center}
+.node .icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border)}
+.node .label{font-weight:700;font-size:.85rem}
+.node .sub{font-size:.72rem;color:var(--muted)}
+.pipe{flex:1 1 60px;min-width:36px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.pipe svg{width:100%;height:20px}
+.pipe .tag{font-size:.68rem;font-weight:700;white-space:nowrap}
+.tag.cold{color:var(--cold)} .tag.hot{color:var(--hot)}
+
+/* concept cards */
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.concept{display:flex;gap:12px;align-items:flex-start}
+.concept .icon{flex:0 0 auto;width:44px;height:44px;border-radius:12px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.concept strong{display:block;font-size:.95rem;margin-bottom:2px}
+.concept span{font-size:.82rem;color:var(--muted)}
+
+/* country cards */
+.countries{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.country{display:flex;flex-direction:column;gap:14px}
+.country .title{display:flex;align-items:center;gap:10px}
+.flagdot{width:10px;height:10px;border-radius:50%}
+.kr .flagdot{background:var(--cold)}
+.jp .flagdot{background:var(--hot)}
+.bullet{display:flex;gap:10px;align-items:flex-start}
+.bullet .icon{flex:0 0 auto;width:36px;height:36px;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.bullet strong{display:block;font-size:.88rem}
+.bullet span{font-size:.78rem;color:var(--muted)}
+
+.foot{font-size:.75rem;color:var(--muted);text-align:center}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="wrap">
+
+  <div class="header">
+    <span class="eyebrow">ELI5 · 빌딩 냉방</span>
+    <h1>건물은 어떻게 시원해질까?</h1>
+    <p>냉동기(Chiller)는 냉장고 엔진처럼 물을 차갑게 만들고, 냉각탑(Cooling Tower)은 땀처럼 그 열을 밖으로 버려요.</p>
+  </div>
+
+  <div class="card">
+    <div class="flow">
+      <div class="node">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.6">
+            <rect x="4" y="3" width="16" height="18" rx="1.5"/>
+            <path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2"/>
+          </svg>
+        </div>
+        <div class="label">실내</div>
+        <div class="sub">더운 공기</div>
+      </div>
+
+      <div class="pipe">
+        <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10h100" stroke="var(--cold)" stroke-width="3" stroke-dasharray="6 5"/><path d="M90 4l10 6-10 6" fill="none" stroke="var(--cold)" stroke-width="3"/></svg>
+        <span class="tag cold">냉수 7℃</span>
+      </div>
+
+      <div class="node">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.6">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>
+          </svg>
+        </div>
+        <div class="label">냉동기</div>
+        <div class="sub">Chiller</div>
+      </div>
+
+      <div class="pipe">
+        <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10h100" stroke="var(--hot)" stroke-width="3" stroke-dasharray="6 5"/><path d="M90 4l10 6-10 6" fill="none" stroke="var(--hot)" stroke-width="3"/></svg>
+        <span class="tag hot">응축수 32℃</span>
+      </div>
+
+      <div class="node">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.6">
+            <path d="M6 20l1.5-13h9L18 20z"/>
+            <path d="M9 7V5M12 7V4M15 7V5"/>
+          </svg>
+        </div>
+        <div class="label">냉각탑</div>
+        <div class="sub">Cooling Tower</div>
+      </div>
+
+      <div class="pipe">
+        <svg viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10h100" stroke="var(--muted)" stroke-width="3" stroke-dasharray="2 5"/><path d="M90 4l10 6-10 6" fill="none" stroke="var(--muted)" stroke-width="3"/></svg>
+        <span class="tag" style="color:var(--muted)">증발</span>
+      </div>
+
+      <div class="node">
+        <div class="icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.6">
+            <path d="M4 15c1.5 0 1.5-2 3-2s1.5 2 3 2 1.5-2 3-2 1.5 2 3 2 1.5-2 3-2"/>
+            <path d="M4 10c1.5 0 1.5-2 3-2s1.5 2 3 2 1.5-2 3-2 1.5 2 3 2 1.5-2 3-2"/>
+          </svg>
+        </div>
+        <div class="label">대기</div>
+        <div class="sub">열 방출</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="header" style="margin-bottom:14px">
+      <h2>세 가지만 기억하면 끝</h2>
+    </div>
+    <div class="concepts">
+      <div class="concept">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cold)" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M8 9l8 6M16 9l-8 6"/></svg></div>
+        <div><strong>Chiller = 냉장고 엔진</strong><span>실내를 식힌 물의 열을 흡수해서 압축기로 밀어냄</span></div>
+      </div>
+      <div class="concept">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--hot)" stroke-width="1.8"><path d="M4 15c1.5 0 1.5-2 3-2s1.5 2 3 2 1.5-2 3-2 1.5 2 3 2 1.5-2 3-2"/></svg></div>
+        <div><strong>Cooling Tower = 땀샘</strong><span>물을 공기와 접촉시켜 증발시키고, 그 기화열로 열을 날려보냄</span></div>
+      </div>
+      <div class="concept">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M4 8a8 4 0 0016 0M4 16a8 4 0 0016 0"/></svg></div>
+        <div><strong>물은 두 번 돈다</strong><span>냉수 루프(실내 ↔ Chiller)와 응축수 루프(Chiller ↔ 냉각탑)는 서로 다른 물</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="countries">
+    <div class="card country kr">
+      <div class="title"><span class="flagdot"></span><h2 style="color:var(--fg)">한국</h2></div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--cold)" stroke-width="1.8"><path d="M12 2v20M4.5 6l15 12M19.5 6l-15 12"/></svg></div>
+        <div><strong>빙축열 시스템</strong><span>심야 저렴한 전력으로 얼음을 얼려두고 낮에 냉방 — 전력 피크 저감</span></div>
+      </div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.8"><path d="M12 3c2 3-2 4-2 7a2 2 0 004 0c0-1 1-1.5 1-1.5"/><path d="M6 21h12"/></svg></div>
+        <div><strong>장마철 고온다습</strong><span>습구온도가 높아지는 시기, 냉각탑 효율이 떨어짐</span></div>
+      </div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.8"><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="12" cy="6" r="2"/><path d="M12 8v7M7 19h10M6.7 17.3L10.5 10M17.3 17.3L13.5 10"/></svg></div>
+        <div><strong>레지오넬라 수질관리</strong><span>냉각탑수 정기 소독·검사 의무 (환경부/지자체 기준)</span></div>
+      </div>
+    </div>
+
+    <div class="card country jp">
+      <div class="title"><span class="flagdot"></span><h2 style="color:var(--fg)">일본</h2></div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--hot)" stroke-width="1.8"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></div>
+        <div><strong>내진설계 필수</strong><span>Chiller·배관·냉각탑 모두 지진 대비 고정장치(seismic bracing) 규정</span></div>
+      </div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.8"><path d="M12 3c2 3-2 4-2 7a2 2 0 004 0c0-1 1-1.5 1-1.5"/><circle cx="12" cy="18" r="3"/></svg></div>
+        <div><strong>흡수식 + 열병합</strong><span>도시가스 코제너레이션과 연계한 흡수식 냉동기 비중이 높음</span></div>
+      </div>
+      <div class="bullet">
+        <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg)" stroke-width="1.8"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><path d="M7 10v2a2 2 0 002 2M17 10v2a2 2 0 01-2 2"/></svg></div>
+        <div><strong>지역냉방(DHC)</strong><span>도쿄·오사카 등 업무지구는 건물마다 Chiller 없이 지역 플랜트에서 냉수 공급</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Chiller가 물을 식히고 → Cooling Tower가 그 열을 대기로 버린다 — 이 한 문장이 전부예요.</p>
+</div>
